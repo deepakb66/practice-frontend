@@ -2,6 +2,16 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+const Component = () => {
+  return (
+    <div>
+      <h1>Hello, World!</h1>
+      <p>Practice React here!</p>
+    </div>
+  );
+}
+// This is a functional component in React
+
 function App() {
   return (
     <div className="App">
@@ -18,6 +28,7 @@ function App() {
         >
           Learn React
         </a>
+        <Component />
       </header>
     </div>
   );
