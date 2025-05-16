@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef, ChangeEvent } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import UsernameGenerator from './UsernameGenerator';
+import Hooks from './Hooks';
+import useLocalStorage from './useLocalStorage';
 
 declare global {
   interface Array<T> {
@@ -62,7 +64,6 @@ Array.prototype.myFilter = function (cb) {
 const myFilter = arr.myFilter((el) => el.age > 40)
 console.log("Filter polyfill: " + JSON.stringify(myFilter))
 
-
 const Component = () => {
   return (
     <div>
@@ -74,6 +75,11 @@ const Component = () => {
 // This is a functional component in React
 
 function App() {
+  const [storedValue, setStoredValue] = useLocalStorage(
+    'select-value',
+    'light'
+  )
+
   return (
     <div className="App">
       <div style={{ backgroundColor: 'lightblue', padding: '20px' }}>
@@ -86,6 +92,16 @@ function App() {
           ))}
         </ul>
         <UsernameGenerator />
+        <Hooks />
+        <div style={{ marginTop: '20px' }}>
+          <select className='select' value={storedValue} onChange={(e) => setStoredValue(e.target.value)}>
+            <option value="dark">Dark</option>
+            <option value="light">Light</option>
+          </select>
+          <p>
+            Value stored in local storage: <strong>{storedValue}</strong>
+          </p>
+        </div>
       </div>
     </div>
   );
